@@ -1,0 +1,73 @@
+
+{% extends 'main/base.html' %}
+{% load static %}
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<body>
+
+    {% block sidebar %}<!-- insert default navigation text for every page -->
+        Prestamistas
+     {% endblock %}
+ 
+  {% block content %}
+        <!-- default content text (typically empty) -->
+  
+  
+    
+        <div class="container">
+        <!-- Page Content goes here -->
+
+                    
+            {% if all_prestamistas_list %}
+
+                <table class="centered responsive-table striped highlight">
+                    <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Fecha nacimiento</th>
+                        <th>telefono</th>
+                        <th>direccion</th> 
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for p in all_prestamistas_list %}
+                            <tr>
+                                <td>{{ p.name }}</td>
+                                <td>{{ p.last_name }}</td>
+                                <td>{{ p.birthdate }}</td>
+                                <td>{{ p.phone }} </td>
+                                <td>{{ p.address }}</td>
+                                <td>
+                                <a href="/edit/{{ p.ci }}/" class="btn-floating btn-large waves-effect waves-light red btn-small">
+                                <i class="material-icons">edit</i>
+                                </a>
+                                <a class="btn-floating btn-large waves-effect waves-light red btn-small">
+                                <i class="material-icons">delete</i>
+                                </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+                {% else %} 
+                    <p>Sin registros </p>
+
+            {% endif %}
+            
+       
+
+        </div>
+     {% endblock %}
+    
+ 
+</body>
+</html>
